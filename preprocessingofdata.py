@@ -4,7 +4,7 @@ import music21 as m21
 import numpy as np
 import tensorflow.keras as keras
 
-KERN_DATASET_PATH = "deutschl/erk"
+KERN_DATASET_PATH = "deutschl/test"
 SAVE_DIR = "dataset"
 SINGLE_FILE_DATASET = "file_dataset"
 MAPPING_PATH = "mapping.json"
@@ -23,7 +23,7 @@ ACCEPTABLE_DURATIONS = [
 ]
 
 
-def load_songs_in_kern(dataset_path):
+def load_songs_in_kern(dataset_path): #
     """Loads all kern pieces in dataset using music21.
     :param dataset_path (str): Path to dataset
     :return songs (list of m21 streams): List containing all pieces
@@ -41,7 +41,7 @@ def load_songs_in_kern(dataset_path):
     return songs
 
 
-def has_acceptable_durations(song, acceptable_durations):
+def has_acceptable_durations(song, acceptable_durations): #
     """Boolean routine that returns True if piece has all acceptable duration, False otherwise.
     :param song (m21 stream):
     :param acceptable_durations (list): List of acceptable duration in quarter length
@@ -51,6 +51,7 @@ def has_acceptable_durations(song, acceptable_durations):
         if note.duration.quarterLength not in acceptable_durations:
             return False
     return True
+
 
 
 def transpose(song):
@@ -252,10 +253,12 @@ def main():
     preprocess(KERN_DATASET_PATH)
     songs = create_single_file_dataset(SAVE_DIR, SINGLE_FILE_DATASET, SEQUENCE_LENGTH)
     create_mapping(songs, MAPPING_PATH)
-    #inputs, targets = generate_training_sequences(SEQUENCE_LENGTH)
+    inputs, targets = generate_training_sequences(SEQUENCE_LENGTH)
 
 
 if __name__ == "__main__":
     main()
+    
+    
 
     
