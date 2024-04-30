@@ -8,7 +8,6 @@ class MelodyGenerator:
     
 
     def __init__(self, model_path="model.h5"):
-        """Constructor that initialises TensorFlow model"""
 
         self.model_path = model_path
         self.model = keras.models.load_model(model_path)
